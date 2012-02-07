@@ -2,6 +2,15 @@
 ;;(unless (require 'el-get nil t) 
 ;;  (with-current-buffer (url-retrieve-synchronously "https://raw.github.com/dimitri/el-get/master/el-get-install.el") (end-of-buffer) (eval-print-last-sexp))) (el-get 'sync)
 
+;; Packages to auto-install
+; Add in your own as you wish:
+(defvar my-packages '(
+    starter-kit 
+    starter-kit-lisp 
+    starter-kit-bindings
+  )
+  "A list of packages to ensure are installed at launch.")
+
 ;; Library Paths
 ;; Note: I like to keep every emacs library underneath
 ;;   ~/.emacs.d and I shun loading them from the system
@@ -13,16 +22,29 @@
 (add-to-list 'load-path "~/.emacs.d")
 (message "Loading configuration from ~/.emacs.d/init.el")
 
-(let ((old-pwd default-directory))
-
 ;Add all top-level subdirectories of .emacs.d to the load path
-  (progn (cd "~/.emacs.d")
-         (normal-top-level-add-subdirs-to-load-path))
-;I like to keep third party libraries seperate in ~/.emacs.d/vendor
-  (add-to-list 'load-path "~/.emacs.d/vendor")
-  (progn (cd "~/.emacs.d/vendor")
-         (normal-top-level-add-subdirs-to-load-path))
-  (cd old-pwd))
+  (let ((default-directory "~/.emacs.d/"))
+    (normal-top-level-add-subdirs-to-load-path))
+
+;Add vendor directory and subdirectories to load path
+;;  (let ((default-directory "~/.emacs.d/vendor/"))
+;;    (normal-top-level-add-subdirs-to-load-path))
+
+(add-to-list 'load-path "~/.emacs.d/vendor/emacs-color-theme-solarized")
+
+;; Add Marmalade package source
+(require 'package)
+(add-to-list 'package-archives
+             '("marmalade" . "http://marmalade-repo.org/packages/") t)
+(package-initialize)
+
+;; Auto-install missing packages
+(when (not package-archive-contents)
+  (package-refresh-contents))
+
+(dolist (p my-packages)
+  (when (not (package-installed-p p))
+    (package-install p)))
 
 ;; Profiling function
 (defun profile-load-library (lib)
