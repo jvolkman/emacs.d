@@ -3,4 +3,4 @@
 (global-set-key [S-up] 'windmove-up)              ; move to upper window
 (global-set-key [S-down] 'windmove-down)          ; move to lower window
 
-(provide 'custom-keyboard)
+(provide 'jv-keyboard)
