@@ -5,6 +5,8 @@
     starter-kit 
     starter-kit-lisp 
     starter-kit-bindings
+    color-theme
+    color-theme-zenburn
   )
   "A list of packages to ensure are installed at launch.")
 
