@@ -52,4 +52,5 @@
 (require 'jv-overrides)   ;; esk overrides
 (require 'jv-keyboard)    ;; Custom keyboard stuff
 (require 'jv-looks)       ;; Color theme and such
+(require 'jv-backups)     ;; Redirect backup/autosave files
 

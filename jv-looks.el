@@ -1,8 +1,11 @@
 ;; Color themes and such
-(require 'color-theme)
 
-(require 'color-theme-solarized)
-(color-theme-solarized-light)
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+(add-to-list 'custom-theme-load-path "~/.emacs.d/vendor/emacs-color-theme-solarized/")
+(add-to-list 'custom-theme-load-path "~/.emacs.d/vendor/zenburn-emacs/")
+
+;;(load-theme 'solarized-light t)
+(load-theme 'zenburn t)
 
 ;; Provide a function to maximize the window, and exec it by default
 (defun toggle-fullscreen ()

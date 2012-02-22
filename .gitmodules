@@ -2,3 +2,6 @@
 	path = vendor/emacs-color-theme-solarized
 	url = https://github.com/sellout/emacs-color-theme-solarized.git
 
+[submodule "vendor/zenburn-emacs"]
+	path = vendor/zenburn-emacs
+	url = https://github.com/bbatsov/zenburn-emacs.git
